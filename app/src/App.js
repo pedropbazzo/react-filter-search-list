@@ -18,6 +18,12 @@ class App extends Component {
   filterData(value) {
     let data = Object.assign({}, this.state.data);
     let dataFiltered = Object.values(data).filter(movie => movie.title.match(new RegExp(value, 'i')));
+    if(dataFiltered.length === 0){
+      dataFiltered = Object.values(data).filter(movie => movie.releaseYear.toString().match(new RegExp(value, 'i')));
+    }
+    if(dataFiltered.length === 0){
+      dataFiltered = Object.values(data).filter(movie => movie.releaseCountry.match(new RegExp(value, 'i')));
+    }
     this.setState({dataFiltered});
   }
   componentDidMount() {
