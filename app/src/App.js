@@ -17,6 +17,10 @@ class App extends Component {
   }
   filterData(value) {
     console.log(value);
+    debugger
+    let data = Object.assign({}, this.state.data);
+    let titles = Object.values(data).filter(movie => movie.title === value);
+    
   }
   componentDidMount() {
     fetch('./data.json').then(response => {
