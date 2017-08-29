@@ -9,8 +9,14 @@ class App extends Component {
 
     this.state = {
       ui: {},
-      data: {}
+      data: {},
+      dataFiltered: {}
     };
+
+    this.filterData = this.filterData.bind(this);
+  }
+  filterData(value) {
+    console.log(value);
   }
   componentDidMount() {
     fetch('./data.json').then(response => {
@@ -20,7 +26,10 @@ class App extends Component {
       }
       response.json().then(data => {
         console.log(data);
-        this.setState({ data });
+        this.setState({
+          data,
+          dataFiltered: data
+        });
       });
     }).catch(error => {
       console.log('Error with fetch', error);
@@ -30,10 +39,14 @@ class App extends Component {
     return (
       <div className="App">
         <div className="app__header">
-          <SearchInput />
+          <SearchInput
+            filterData={this.filterData}
+          />
         </div>
         <div className="app__body">
-          <MovieList data={this.state.data} />
+          <MovieList
+            data={this.state.dataFiltered}
+          />
         </div>
       </div>
     );
