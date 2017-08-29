@@ -16,11 +16,9 @@ class App extends Component {
     this.filterData = this.filterData.bind(this);
   }
   filterData(value) {
-    console.log(value);
-    debugger
     let data = Object.assign({}, this.state.data);
-    let titles = Object.values(data).filter(movie => movie.title === value);
-    
+    let dataFiltered = Object.values(data).filter(movie => movie.title.match(new RegExp(value, 'i')));
+    this.setState({dataFiltered});
   }
   componentDidMount() {
     fetch('./data.json').then(response => {
