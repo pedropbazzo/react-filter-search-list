@@ -15,7 +15,7 @@ class MovieList extends Component {
         let data = this.props.data;
         let isLoading = this.props.isLoading;
         let isDataEmpty = Object.entries(data).length === 0;
-        let movieList = isLoading ? <Loader /> : isDataEmpty ? 'No results. Please try another search term.' :
+        let movieList = isLoading ? <Loader /> : isDataEmpty ? <div>No results.<br />Please try another search term.</div> :
             Object.entries(data).map((movie, index) => <MovieTile key={index} {...movie[1]} />);
         return (
             <div className='movieList'>{movieList}</div>
