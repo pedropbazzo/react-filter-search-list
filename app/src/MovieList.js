@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Loader from './Loader.js';
+import MovieTile from './MovieTile.js';
+import './MovieList.css';
 
 class MovieList extends Component {
     constructor(props) {
@@ -7,9 +9,10 @@ class MovieList extends Component {
     }
     render() {
         let data = this.props.data;
-        let movieList = data.length === 0 ? <Loader /> : 'List of movie from data'
+        let movieList = Object.entries(data).length === 0 ? <Loader /> :   
+        Object.entries(data).map((movie, index) => <MovieTile key={index} {...movie[1]} />);
         return (
-            <div>{movieList}</div>
+            <div className='movieList'>{movieList}</div>
         );
     }
 };
