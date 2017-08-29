@@ -16,15 +16,12 @@ class App extends Component {
     this.filterData = this.filterData.bind(this);
   }
   filterData(value) {
+    // filter movie titles using user input
     let data = Object.assign({}, this.state.data);
-    let dataFiltered = Object.values(data).filter(movie => movie.title.match(new RegExp(value, 'i')));
-    if(dataFiltered.length === 0){
-      dataFiltered = Object.values(data).filter(movie => movie.releaseYear.toString().match(new RegExp(value, 'i')));
-    }
-    if(dataFiltered.length === 0){
-      dataFiltered = Object.values(data).filter(movie => movie.releaseCountry.match(new RegExp(value, 'i')));
-    }
-    this.setState({dataFiltered});
+    let dataValues = Object.values(data);
+    let regex = new RegExp(value, 'i');
+    let dataFiltered = dataValues.filter(movie => movie.title.match(regex));
+    this.setState({ dataFiltered });
   }
   componentDidMount() {
     fetch('./data.json').then(response => {
