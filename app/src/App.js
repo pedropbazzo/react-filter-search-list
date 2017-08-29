@@ -3,12 +3,19 @@ import MovieList from './MovieList.js';
 import SearchInput from './SearchInput.js';
 import './App.css';
 
+/* 
+ * Main component.
+ * Notes:
+ * The main state is kept here and passed down to other components using props.
+ */
 class App extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      ui: {},
+      ui: {
+        isLoading: true
+      },
       data: {},
       dataFiltered: {}
     };
@@ -16,14 +23,13 @@ class App extends Component {
     this.filterData = this.filterData.bind(this);
   }
   filterData(value) {
-    // filter movie titles using user input
+    // filter movies by title
     let data = Object.assign({}, this.state.data);
-    let dataValues = Object.values(data);
-    let regex = new RegExp(value, 'i');
-    let dataFiltered = dataValues.filter(movie => movie.title.match(regex));
+    let dataFiltered = Object.values(data).filter(movie => movie.title.match(new RegExp(value, 'i')));
     this.setState({ dataFiltered });
   }
   componentDidMount() {
+    // load data source
     fetch('./data.json').then(response => {
       if (response.status !== 200) {
         console.log('Looks like there was a problem. Status Code: ', response.status);
@@ -32,6 +38,9 @@ class App extends Component {
       response.json().then(data => {
         console.log(data);
         this.setState({
+          ui: {
+            isLoading: false
+          },
           data,
           dataFiltered: data
         });
@@ -50,6 +59,7 @@ class App extends Component {
         </div>
         <div className="app__body">
           <MovieList
+            isLoading={this.state.ui.isLoading}
             data={this.state.dataFiltered}
           />
         </div>

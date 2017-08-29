@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './MovieTile.css';
 
+/*
+ * Movie.
+ */
 class MovieTile extends Component {
     constructor(props) {
         super(props);

@@ -1,12 +1,11 @@
 .app__header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 80px;
+  padding: 20px;
+  background-color: #222;
+  color: #FFFFFF;
 }
 
 .app__body {
