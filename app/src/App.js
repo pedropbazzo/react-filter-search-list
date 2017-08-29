@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import MovieList from './MovieList.js'
-import logo from './logo.svg';
+import MovieList from './MovieList.js';
+import SearchInput from './SearchInput.js';
 import './App.css';
 
 class App extends Component {
@@ -30,7 +30,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="app__header">
-
+          <SearchInput />
         </div>
         <div className="app__body">
           <MovieList data={this.state.data} />
