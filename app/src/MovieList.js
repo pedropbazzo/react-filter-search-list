@@ -24,3 +24,10 @@ class MovieList extends Component {
 };
 
 export default MovieList;
+
+/*
+ * Notes:
+ * In the following code a spread operator is being used 
+ * to pass all properties from object `movie[1]` to component `<MovieTile />`
+ * <MovieTile key={index} {...movie[1]} />
+ */
