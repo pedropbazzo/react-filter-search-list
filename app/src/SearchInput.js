@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './SearchInput.css';
 
 class SearchInput extends Component {
     constructor(props) {
@@ -16,10 +17,11 @@ class SearchInput extends Component {
     }
     render() {
         return (
-            <div>
+            <div className='searchInput'>
                 <input
+                    className='searchInput__input'
                     type='text'
-                    placeholder='Type to search'
+                    placeholder='Type here to search'
                     onChange={this.onInputChange}
                 />
             </div>
